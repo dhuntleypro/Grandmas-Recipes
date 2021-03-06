@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct SearchView: View {
+    @EnvironmentObject var auth: AuthViewModel
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            auth.signOut()
+        }) {
+            Text("Log Out")
+        }
+        //.modifier(myClearButtonAdjustable(bgColor: .red))
+        
+        
     }
 }
 

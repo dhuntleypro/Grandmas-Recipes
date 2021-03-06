@@ -11,7 +11,7 @@
 		86AF937925F35B05005862E3 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF937825F35B05005862E3 /* PostView.swift */; };
 		86AF937E25F35E2B005862E3 /* StoryCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF937D25F35E2B005862E3 /* StoryCircleView.swift */; };
 		86AF938125F3621F005862E3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF938025F3621F005862E3 /* LoginView.swift */; };
-		86AF938525F3663B005862E3 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF938425F3663B005862E3 /* SignupView.swift */; };
+		86AF938525F3663B005862E3 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF938425F3663B005862E3 /* RegistrationView.swift */; };
 		86AF938825F36C6B005862E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86AF938725F36C6B005862E3 /* GoogleService-Info.plist */; };
 		86AF938C25F36D22005862E3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 86AF938B25F36D22005862E3 /* FirebaseFirestore */; };
 		86AF938E25F36D22005862E3 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 86AF938D25F36D22005862E3 /* FirebaseDatabase */; };
@@ -24,13 +24,21 @@
 		86AF939F25F36E98005862E3 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF939E25F36E98005862E3 /* AuthViewModel.swift */; };
 		86AF93A225F36F04005862E3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF93A125F36F04005862E3 /* User.swift */; };
 		86AF93A725F37C3A005862E3 /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF93A625F37C3A005862E3 /* Extension+Color.swift */; };
+		86AF93B625F42547005862E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF93B525F42547005862E3 /* Constants.swift */; };
+		86AF943E25F43DED005862E3 /* FBAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF943D25F43DED005862E3 /* FBAuthError.swift */; };
+		86AF944225F43E4C005862E3 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF944125F43E4C005862E3 /* SignInWithAppleView.swift */; };
+		86AF944625F43E93005862E3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 86AF944525F43E93005862E3 /* Kingfisher */; };
+		86AF944925F43EBA005862E3 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF944825F43EBA005862E3 /* CustomTextField.swift */; };
+		86AF944C25F43EC9005862E3 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF944B25F43EC9005862E3 /* CustomSecureField.swift */; };
+		86AF944F25F43ED9005862E3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF944E25F43ED9005862E3 /* ImagePicker.swift */; };
+		86AF945525F44162005862E3 /* AppNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF945425F44162005862E3 /* AppNavigation.swift */; };
 		86EBD27E25F30F160074879C /* Grandmas_RecipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBD27D25F30F160074879C /* Grandmas_RecipesApp.swift */; };
-		86EBD28025F30F160074879C /* TabRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBD27F25F30F160074879C /* TabRootView.swift */; };
+		86EBD28025F30F160074879C /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBD27F25F30F160074879C /* MainTabView.swift */; };
 		86EBD28225F30F1A0074879C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86EBD28125F30F1A0074879C /* Assets.xcassets */; };
 		86EBD28525F30F1A0074879C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86EBD28425F30F1A0074879C /* Preview Assets.xcassets */; };
 		86EBD29625F356E60074879C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBD29525F356E60074879C /* HomeView.swift */; };
 		86EBD29A25F356F20074879C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBD29925F356F20074879C /* SearchView.swift */; };
-		86EBD29F25F3572F0074879C /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBD29E25F3572F0074879C /* MeView.swift */; };
+		86EBD29F25F3572F0074879C /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBD29E25F3572F0074879C /* UserProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,20 +46,27 @@
 		86AF937825F35B05005862E3 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		86AF937D25F35E2B005862E3 /* StoryCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCircleView.swift; sourceTree = "<group>"; };
 		86AF938025F3621F005862E3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		86AF938425F3663B005862E3 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		86AF938425F3663B005862E3 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		86AF938725F36C6B005862E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86AF939E25F36E98005862E3 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		86AF93A125F36F04005862E3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		86AF93A625F37C3A005862E3 /* Extension+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Color.swift"; sourceTree = "<group>"; };
+		86AF93B525F42547005862E3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		86AF943D25F43DED005862E3 /* FBAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAuthError.swift; sourceTree = "<group>"; };
+		86AF944125F43E4C005862E3 /* SignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
+		86AF944825F43EBA005862E3 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		86AF944B25F43EC9005862E3 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
+		86AF944E25F43ED9005862E3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		86AF945425F44162005862E3 /* AppNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigation.swift; sourceTree = "<group>"; };
 		86EBD27A25F30F160074879C /* Grandmas Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grandmas Recipes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86EBD27D25F30F160074879C /* Grandmas_RecipesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grandmas_RecipesApp.swift; sourceTree = "<group>"; };
-		86EBD27F25F30F160074879C /* TabRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRootView.swift; sourceTree = "<group>"; };
+		86EBD27F25F30F160074879C /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		86EBD28125F30F1A0074879C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86EBD28425F30F1A0074879C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		86EBD28625F30F1A0074879C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86EBD29525F356E60074879C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		86EBD29925F356F20074879C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		86EBD29E25F3572F0074879C /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
+		86EBD29E25F3572F0074879C /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +77,7 @@
 				86AF939025F36D22005862E3 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				86AF938E25F36D22005862E3 /* FirebaseDatabase in Frameworks */,
 				86AF939C25F36D7A005862E3 /* SPAlert in Frameworks */,
+				86AF944625F43E93005862E3 /* Kingfisher in Frameworks */,
 				86AF939225F36D22005862E3 /* FirebaseAnalytics in Frameworks */,
 				86AF939625F36D22005862E3 /* FirebaseFunctions in Frameworks */,
 				86AF939425F36D22005862E3 /* FirebaseStorage in Frameworks */,
@@ -86,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				86AF939E25F36E98005862E3 /* AuthViewModel.swift */,
+				86AF943D25F43DED005862E3 /* FBAuthError.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -94,8 +111,22 @@
 			isa = PBXGroup;
 			children = (
 				86AF93A625F37C3A005862E3 /* Extension+Color.swift */,
+				86AF93B525F42547005862E3 /* Constants.swift */,
+				86AF944825F43EBA005862E3 /* CustomTextField.swift */,
+				86AF944B25F43EC9005862E3 /* CustomSecureField.swift */,
+				86AF944E25F43ED9005862E3 /* ImagePicker.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		86AF93AF25F3B0F1005862E3 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				86AF938025F3621F005862E3 /* LoginView.swift */,
+				86AF938425F3663B005862E3 /* RegistrationView.swift */,
+				86AF944125F43E4C005862E3 /* SignInWithAppleView.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		86EBD27125F30F160074879C = {
@@ -141,9 +172,9 @@
 		86EBD28D25F3569A0074879C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				86AF938025F3621F005862E3 /* LoginView.swift */,
-				86AF938425F3663B005862E3 /* SignupView.swift */,
-				86EBD27F25F30F160074879C /* TabRootView.swift */,
+				86AF945425F44162005862E3 /* AppNavigation.swift */,
+				86AF93AF25F3B0F1005862E3 /* Authentication */,
+				86EBD27F25F30F160074879C /* MainTabView.swift */,
 				86EBD29225F356D60074879C /* Home */,
 				86EBD29D25F356FB0074879C /* Profile */,
 				86EBD29825F356E90074879C /* Search */,
@@ -172,7 +203,7 @@
 		86EBD29D25F356FB0074879C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				86EBD29E25F3572F0074879C /* MeView.swift */,
+				86EBD29E25F3572F0074879C /* UserProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -202,6 +233,7 @@
 				86AF939525F36D22005862E3 /* FirebaseFunctions */,
 				86AF939725F36D22005862E3 /* FirebaseAuth */,
 				86AF939B25F36D7A005862E3 /* SPAlert */,
+				86AF944525F43E93005862E3 /* Kingfisher */,
 			);
 			productName = "Grandmas Recipes";
 			productReference = 86EBD27A25F30F160074879C /* Grandmas Recipes.app */;
@@ -233,6 +265,7 @@
 			packageReferences = (
 				86AF938A25F36D22005862E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				86AF939A25F36D7A005862E3 /* XCRemoteSwiftPackageReference "SPAlert" */,
+				86AF944425F43E92005862E3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 86EBD27B25F30F160074879C /* Products */;
 			projectDirPath = "";
@@ -261,19 +294,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86AF943E25F43DED005862E3 /* FBAuthError.swift in Sources */,
+				86AF944C25F43EC9005862E3 /* CustomSecureField.swift in Sources */,
 				86AF937925F35B05005862E3 /* PostView.swift in Sources */,
 				86EBD29A25F356F20074879C /* SearchView.swift in Sources */,
 				86EBD29625F356E60074879C /* HomeView.swift in Sources */,
 				86AF938125F3621F005862E3 /* LoginView.swift in Sources */,
-				86AF938525F3663B005862E3 /* SignupView.swift in Sources */,
-				86EBD28025F30F160074879C /* TabRootView.swift in Sources */,
+				86AF93B625F42547005862E3 /* Constants.swift in Sources */,
+				86AF945525F44162005862E3 /* AppNavigation.swift in Sources */,
+				86AF938525F3663B005862E3 /* RegistrationView.swift in Sources */,
+				86AF944925F43EBA005862E3 /* CustomTextField.swift in Sources */,
+				86EBD28025F30F160074879C /* MainTabView.swift in Sources */,
 				86EBD27E25F30F160074879C /* Grandmas_RecipesApp.swift in Sources */,
 				86AF939F25F36E98005862E3 /* AuthViewModel.swift in Sources */,
 				86AF93A225F36F04005862E3 /* User.swift in Sources */,
-				86EBD29F25F3572F0074879C /* MeView.swift in Sources */,
+				86EBD29F25F3572F0074879C /* UserProfileView.swift in Sources */,
 				86AF937E25F35E2B005862E3 /* StoryCircleView.swift in Sources */,
 				86AF93A725F37C3A005862E3 /* Extension+Color.swift in Sources */,
+				86AF944F25F43ED9005862E3 /* ImagePicker.swift in Sources */,
 				86AF937625F359FC005862E3 /* RecipePost.swift in Sources */,
+				86AF944225F43E4C005862E3 /* SignInWithAppleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +520,14 @@
 				minimumVersion = 3.0.4;
 			};
 		};
+		86AF944425F43E92005862E3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -522,6 +570,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 86AF939A25F36D7A005862E3 /* XCRemoteSwiftPackageReference "SPAlert" */;
 			productName = SPAlert;
+		};
+		86AF944525F43E93005862E3 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86AF944425F43E92005862E3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
