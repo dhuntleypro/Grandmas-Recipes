@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     var HomePost: [RecipePost] = [
-        RecipePost(postingUser: "person", description: "this is a long description", numberOfLikes: 1123, image: Image(systemName: "timelapse")),
+        RecipePost(postingUser: "person1", description: "this is a long description", numberOfLikes: 1123, image: Image(systemName: "timelapse")),
         
         RecipePost(postingUser: "mark", description: "this is a long description", numberOfLikes: 1123, image: Image(systemName: "timelapse")),
         

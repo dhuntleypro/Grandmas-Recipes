@@ -23,6 +23,7 @@
 		86AF939C25F36D7A005862E3 /* SPAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 86AF939B25F36D7A005862E3 /* SPAlert */; };
 		86AF939F25F36E98005862E3 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF939E25F36E98005862E3 /* AuthViewModel.swift */; };
 		86AF93A225F36F04005862E3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF93A125F36F04005862E3 /* User.swift */; };
+		86AF93A725F37C3A005862E3 /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF93A625F37C3A005862E3 /* Extension+Color.swift */; };
 		86EBD27E25F30F160074879C /* Grandmas_RecipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBD27D25F30F160074879C /* Grandmas_RecipesApp.swift */; };
 		86EBD28025F30F160074879C /* TabRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBD27F25F30F160074879C /* TabRootView.swift */; };
 		86EBD28225F30F1A0074879C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86EBD28125F30F1A0074879C /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		86AF938725F36C6B005862E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86AF939E25F36E98005862E3 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		86AF93A125F36F04005862E3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		86AF93A625F37C3A005862E3 /* Extension+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Color.swift"; sourceTree = "<group>"; };
 		86EBD27A25F30F160074879C /* Grandmas Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grandmas Recipes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86EBD27D25F30F160074879C /* Grandmas_RecipesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grandmas_RecipesApp.swift; sourceTree = "<group>"; };
 		86EBD27F25F30F160074879C /* TabRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRootView.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		86AF937B25F35B18005862E3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				86AF93A625F37C3A005862E3 /* Extension+Color.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				86AF93A225F36F04005862E3 /* User.swift in Sources */,
 				86EBD29F25F3572F0074879C /* MeView.swift in Sources */,
 				86AF937E25F35E2B005862E3 /* StoryCircleView.swift in Sources */,
+				86AF93A725F37C3A005862E3 /* Extension+Color.swift in Sources */,
 				86AF937625F359FC005862E3 /* RecipePost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

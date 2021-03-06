@@ -16,9 +16,9 @@ struct Grandmas_RecipesApp: App {
     }
     var body: some Scene {
         WindowGroup {
-           // TabRootView()
+            TabRootView()
            // SignupView()
-            LoginView()
+         //   LoginView()
         }
     }
 }
