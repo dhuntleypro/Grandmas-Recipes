@@ -8,23 +8,43 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    var HomePost: [RecipePost] = [
+        RecipePost(postingUser: "person", description: "this is a long description", numberOfLikes: 1123, image: Image(systemName: "timelapse")),
+        
+        RecipePost(postingUser: "mark", description: "this is a long description", numberOfLikes: 1123, image: Image(systemName: "timelapse")),
+        
+        RecipePost(postingUser: "dmoney", description: "this is a long description", numberOfLikes: 1123, image: Image(systemName: "timelapse")),
+        
+        RecipePost(postingUser: "perfkinson", description: "this is a long description", numberOfLikes: 1123, image: Image(systemName: "timelapse")),
+        
+        RecipePost(postingUser: "ookokperson", description: "this is a long description", numberOfLikes: 1123, image: Image(systemName: "timelapse"))
+    
+    
+    ]
+    
     var body: some View {
         VStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                   Text("yoooooooooo")
-                    Text("yoooooooooo")
+                    Spacer()
+                        .frame(width: 10)
+                    ForEach(0..<10){ _ in
+                        StoryCircleView()
+                    }
+                    Spacer()
+                        .frame(width: 10)
                 }
                 .frame(height: 80)
             }
-            .background(Color.red)
+          //  .background(Color.clear)
             ScrollView(.vertical) {
-                ForEach(0..<50) { _ in
-                    Text("ffffkookokokookokokokokookofff")
+                ForEach(HomePost, id: \.id) { post in
+                    PostView(passed_postingUser: post.postingUser , passed_description: post.description, passed_numberOfLikes: post.numberOfLikes, passed_image: post.image)
 
                 }
             }
-            .background(Color.blue)
+         //   .background(Color.clear)
 
             
         }
