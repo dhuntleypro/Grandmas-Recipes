@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct LoginView: View {
+    @ObservedObject var authVM = AuthViewModel()
+
     
-    @State var user = ""
-    @State var pass = ""
+    @State var username = ""
+    @State var password = ""
 
     @State var signUp_visible = false
     
@@ -27,18 +29,21 @@ struct LoginView: View {
                 .background(Color.blue)
                 .edgesIgnoringSafeArea(.top)
             
-            TextField("Username", text: $user)
+            TextField("Username", text: $username)
                 .padding()
                 .background(Color.clear)
             
-            TextField("Placeholder", text: $pass)
+            TextField("Password", text: $password)
                 .padding()
                 .background(Color.clear)
             
             Spacer()
                 .frame(height: 20)
             
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+            Button(action: {
+                authVM.login(username: username, password: password)
+                
+            }, label: {
                 Text("Login")
             })
             .padding()
@@ -54,7 +59,7 @@ struct LoginView: View {
             .padding()
             .background(Color.orange)
             .sheet(isPresented: $signUp_visible) {
-                Text("sign up sheet")
+                SignupView()
             }
             Spacer()
         }
