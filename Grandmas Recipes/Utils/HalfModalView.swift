@@ -48,6 +48,7 @@ struct HalfModalView<Content:View>: View {
                     .gesture(
                         TapGesture()
                             .onEnded { _ in
+                                UIApplication.shared.endEditing() // Hide keyboard
                                 self.isShown = false
                             }
                     )
@@ -82,6 +83,7 @@ struct HalfModalView<Content:View>: View {
                 
                 
             }
+            .KeyboardAwarePadding()
         }.edgesIgnoringSafeArea(.all)
         
     }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct NewPostView: View {
     @ObservedObject var stepVM = StepViewModel()
     @ObservedObject var ingredientVM = IngredientViewModel()
@@ -17,10 +18,25 @@ struct NewPostView: View {
     @State var image : UIImage?
     
     // BOTTOM MODAL
-    @State var halfModal_Shown = false
+    @State var halfModal_shown = false
+    
+    
     @State var halfModal_title : String = ""
-    @State var halfModal_textField : String = ""
-    @State var halfModal_placeholder : String = ""
+    @State var halfModal_textField_val : String = ""
+    @State var halfModal_textField_placeholder : String = ""
+    @State var halfModal_height : CGFloat = 300
+
+    @State var newItem_type : new_StepOrIngredient = .Step
+    @State var ingredientUnit_index = 0
+
+    // Sample Data
+    @State var steps : [Step] = [
+        
+    ]
+    
+    @State var ingredients : [Ingredient] = [
+        
+    ]
     
     
     var body: some View {
@@ -54,17 +70,17 @@ struct NewPostView: View {
                         ZStack {
                             Image(systemName: "plus.circle")
                                 .foregroundColor(.black)
-
+                            
                             Image(systemName: "plus.circle.fill")
                                 .foregroundColor(.white)
-
+                            
                         }
-                         //   .padding()
-                            .font(.system(size: 30))
-                            .foregroundColor(.white)
-                            .shadow(radius: 4)
-                            .opacity(0.7)
-                                .padding()
+                        //   .padding()
+                        .font(.system(size: 30))
+                        .foregroundColor(.white)
+                        .shadow(radius: 4)
+                        .opacity(0.7)
+                        .padding()
                         
                     }.actionSheet(isPresented: $showSheet, content: {
                         ActionSheet(title: Text("Add a picture to your post"), message: nil, buttons: [
@@ -92,20 +108,33 @@ struct NewPostView: View {
                             Text("Ingredients")
                                 .padding(.top)
                                 .foregroundColor(.white)
-                                
+                            
                             
                             ScrollView{
                                 VStack(spacing: 0){
-                                    ForEach(0..<37) { _ in
-                                        // ForEach(ingredientVM.ingredients) { ingredient in
-                                        //   Text("\(ingredient.amount) \(ingredient.name) ")
-                                        HStack {
-                                            Text("fff uhuhh uhff")
-                                            
-                                            Spacer()
+                                    if ingredients.count > 0 {
+                                        
+                                        ForEach(ingredientVM.ingredients) { ingredient in
+                                            HStack {
+                                                Text("\(ingredient.amount) \(ingredient.name) ")
+                                                
+                                                Spacer()
+                                            }
                                         }
+                                    }else {
+                                        Button(action: {
+                                            self.update_halfModal(title: "ADD AN INGREDIENT", placeholder: "Enter new ingredient", itemType: .Ingredient, height: 470)
+                                            self.halfModal_shown = true
+                                        }) {
+                                            Text("Add some ingredients")
+                                                .padding()
+                                                .foregroundColor(.gray)
+                                        }
+                                        .foregroundColor(Color.init(red: 108/255, green: 204/255, blue: 108/255))
+                                        
+                                        
                                     }
-                                    .foregroundColor(Color.init(red: 108/255, green: 204/255, blue: 108/255))
+                                    
                                 }
                                 .padding()
                             }
@@ -116,9 +145,8 @@ struct NewPostView: View {
                         
                         
                         Button(action: {
-                            self.halfModal_title = "ADD AN INGREDIENT"
-                            self.halfModal_placeholder = "Enter new ingredient"
-                            self.halfModal_Shown.toggle()
+                            self.update_halfModal(title: "ADD AN INGREDIENT", placeholder: "Enter new ingredient", itemType: .Ingredient, height: 470)
+                            self.halfModal_shown.toggle()
                         }) {
                             Image(systemName: "plus.circle.fill")
                                 .padding()
@@ -127,39 +155,49 @@ struct NewPostView: View {
                                 .opacity(0.7)
                         }
                     }
-                
+                    
                     ZStack(alignment: .topTrailing) {
                         VStack {
                             Text("Steps")
                                 .padding(.top)
                             ScrollView{
                                 VStack(spacing: 0){
-                                    ForEach(0..<37) { _ in
-                                        // ForEach(stepVM.steps) { step in
-                                        //    Text(step.description)
+                                    if steps.count < 0 {
                                         
-                                        HStack {
-                                            Text("yoooo")
+                                        ForEach(stepVM.steps) { step in
                                             
-                                            Spacer()
+                                            HStack {
+                                                Text(step.description)
+                                                
+                                                Spacer()
+                                            }
+                                        }
+                                    } else if steps.count >= 0 {
+                                        Button(action: {
+                                            self.update_halfModal(title: "ADD A STEP", placeholder: "Enter new step", itemType: .Ingredient, height: 470)
+                                            self.halfModal_shown = true
+                                        }) {
+                                            Text("Add some steps")
+                                                .padding()
+                                                .foregroundColor(.gray)
                                         }
                                     }
+                                    
                                 }
                                 .padding()
                             }
                             .frame(width: UIScreen.main.bounds.width/2)
                             .clipped()
                             
-//                            Text("Add New")
-//                                .padding()
+                            //                            Text("Add New")
+                            //                                .padding()
                         }
                         .background(Color.green)
                         
                         Button(action: {
-                            self.halfModal_title = "ADD A STEP"
-                            self.halfModal_placeholder = "Enter new step"
-
-                            self.halfModal_Shown.toggle()
+                            self.update_halfModal(title: "ADD A STEP", placeholder: "Enter new step", itemType: .Ingredient, height: 470)
+                            
+                            self.halfModal_shown.toggle()
                         }) {
                             Image(systemName: "plus.circle.fill")
                                 .padding()
@@ -170,21 +208,40 @@ struct NewPostView: View {
                     }
                     
                 }
-
+                
             }
             .sheet(isPresented: $showImagePicker) {
                 CustomImagePickerWindow(image: $image, sourceType: $sourceType)
-               // MultipleImagePicker(image: $image , sourceType : sourceType)
-        }
+                // MultipleImagePicker(image: $image , sourceType : sourceType)
+            }
             
             // half sheet
-            HalfModalView(isShown: $halfModal_Shown, modalHeight: 380) {
-                BottomModalView(halfModal_title: $halfModal_title, halfModal_textField: $halfModal_textField, halfModal_placeholder: $halfModal_placeholder)
+            HalfModalView(isShown: $halfModal_shown, modalHeight: 380) {
+                BottomModalView(halfModal_title: $halfModal_title, halfModal_textField_val: $halfModal_textField_val, halfModal_textField_placeholder: $halfModal_textField_placeholder, newItem_type: $newItem_type, ingredientUnit_index: $ingredientUnit_index)
             }
         }
         .navigationBarHidden(true)
         
     }
+    func update_halfModal(title:String, placeholder:String, itemType:new_StepOrIngredient, height:CGFloat){
+        halfModal_title = title
+        halfModal_textField_placeholder = placeholder
+        newItem_type = itemType
+        halfModal_height = height
+        
+    }
+    
+//    func add_newItem(){
+//        if newItem_type == .Step {
+//            //            steps.append(Step(description: halfModal_textField_val, orderNumber: steps.count))
+//            steps.append(Step(dictionary: [
+//                "description" : halfModal_textField_val,
+//                "orderNumber" : steps.count
+//            ]))
+//        }
+//        UIApplication.shared.endEditing()
+//        halfModal_shown = false
+//    }
 }
 
 struct NewPostView_Previews: PreviewProvider {

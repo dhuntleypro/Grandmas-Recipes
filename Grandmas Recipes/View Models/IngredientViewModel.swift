@@ -7,9 +7,14 @@
 
 import SwiftUI
 
+
+
 class IngredientViewModel: ObservableObject {
     @Published var ingredients = [Ingredient]()
 
+
+
+    
     init() {
         self.fetchIngredient()
     }

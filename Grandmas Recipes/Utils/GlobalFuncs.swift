@@ -9,6 +9,14 @@ import SwiftUI
 
 // USE ANYWHERE IN CODE
 
+// HIDE THE KEYBOARD  
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
+
 // MEASURES SCROLLABLE MOVEMENT
 func fraction_progress(lowerLimit: Double = 0, upperLimit:Double, current:Double, inverted:Bool = false) -> Double{
     var val:Double = 0

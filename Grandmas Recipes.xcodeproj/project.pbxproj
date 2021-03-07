@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		868D19A025F4EB8C001F2318 /* BottomModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D199F25F4EB8C001F2318 /* BottomModalView.swift */; };
+		868D19C225F4FF00001F2318 /* KeyboardAwareModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D19C125F4FF00001F2318 /* KeyboardAwareModifier.swift */; };
+		868D19C525F50749001F2318 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D19C425F50749001F2318 /* RecipeViewModel.swift */; };
 		86AF937625F359FC005862E3 /* RecipePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF937525F359FC005862E3 /* RecipePost.swift */; };
 		86AF937925F35B05005862E3 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF937825F35B05005862E3 /* PostView.swift */; };
 		86AF937E25F35E2B005862E3 /* StoryCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF937D25F35E2B005862E3 /* StoryCircleView.swift */; };
@@ -53,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		868D199F25F4EB8C001F2318 /* BottomModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomModalView.swift; sourceTree = "<group>"; };
+		868D19C125F4FF00001F2318 /* KeyboardAwareModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAwareModifier.swift; sourceTree = "<group>"; };
+		868D19C425F50749001F2318 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		86AF937525F359FC005862E3 /* RecipePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePost.swift; sourceTree = "<group>"; };
 		86AF937825F35B05005862E3 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		86AF937D25F35E2B005862E3 /* StoryCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCircleView.swift; sourceTree = "<group>"; };
@@ -112,8 +116,8 @@
 		86AF936F25F359C9005862E3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				86AF937525F359FC005862E3 /* RecipePost.swift */,
 				86AF93A125F36F04005862E3 /* User.swift */,
+				86AF937525F359FC005862E3 /* RecipePost.swift */,
 				86AF946125F446FC005862E3 /* Ingredient.swift */,
 				86AF946425F448FB005862E3 /* Step.swift */,
 			);
@@ -125,6 +129,7 @@
 			children = (
 				86AF939E25F36E98005862E3 /* AuthViewModel.swift */,
 				86AF943D25F43DED005862E3 /* FBAuthError.swift */,
+				868D19C425F50749001F2318 /* RecipeViewModel.swift */,
 				86AF946725F44DA6005862E3 /* IngredientViewModel.swift */,
 				86AF946F25F44FC8005862E3 /* StepViewModel.swift */,
 			);
@@ -143,6 +148,7 @@
 				86AF947725F4686B005862E3 /* CustomImagePickerWindow.swift */,
 				86BAEC7A25F4E3870002F1C0 /* HalfModalView.swift */,
 				86BAEC9925F4E4600002F1C0 /* GlobalFuncs.swift */,
+				868D19C125F4FF00001F2318 /* KeyboardAwareModifier.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 				86AF938125F3621F005862E3 /* LoginView.swift in Sources */,
 				86AF946525F448FB005862E3 /* Step.swift in Sources */,
 				86AF93B625F42547005862E3 /* Constants.swift in Sources */,
+				868D19C225F4FF00001F2318 /* KeyboardAwareModifier.swift in Sources */,
 				868D19A025F4EB8C001F2318 /* BottomModalView.swift in Sources */,
 				86AF946825F44DA7005862E3 /* IngredientViewModel.swift in Sources */,
 				86AF945525F44162005862E3 /* AppNavigation.swift in Sources */,
@@ -369,6 +376,7 @@
 				86AF944F25F43ED9005862E3 /* ImagePicker.swift in Sources */,
 				86AF937625F359FC005862E3 /* RecipePost.swift in Sources */,
 				86AF944225F43E4C005862E3 /* SignInWithAppleView.swift in Sources */,
+				868D19C525F50749001F2318 /* RecipeViewModel.swift in Sources */,
 				86AF947525F45DDE005862E3 /* MultipleImagePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
