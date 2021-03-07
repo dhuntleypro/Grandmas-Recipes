@@ -10,7 +10,7 @@ import SwiftUI
 
 
 class IngredientViewModel: ObservableObject {
-    @Published var ingredients = [Ingredient]()
+ //   @Published var ingredients = [Ingredient]()
 
 
 

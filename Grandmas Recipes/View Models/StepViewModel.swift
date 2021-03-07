@@ -8,7 +8,7 @@
 import SwiftUI
 
 class StepViewModel: ObservableObject {
-    @Published var steps = [Step]()
+  //  @Published var steps = [Step]()
 
     init() {
         self.fetchStep()

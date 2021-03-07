@@ -6,41 +6,66 @@
 //
 
 import SwiftUI
-
+import SPAlert
+import Firebase
 
 struct NewPostView: View {
+    @ObservedObject var recipeVM = RecipeViewModel()
+
     @ObservedObject var stepVM = StepViewModel()
     @ObservedObject var ingredientVM = IngredientViewModel()
     
     @State var showSheet = false
     @State var showImagePicker = false
-    @State var sourceType : UIImagePickerController.SourceType = .camera
-    @State var image : UIImage?
+    @State var sourceType:UIImagePickerController.SourceType = .camera
+    @State private var image:UIImage?
     
-    // BOTTOM MODAL
     @State var halfModal_shown = false
     
+    @State var halfModal_title = ""
+    @State var halfModal_textField_placeholder = ""
+    @State var halfModal_textField1_val = ""
+    @State var halfModal_textField2_val = ""
+    @State var halfModal_height:CGFloat = 380
     
-    @State var halfModal_title : String = ""
-    @State var halfModal_textField1_val : String = ""
-    @State var halfModal_textField2_val : String = ""
-
-    @State var halfModal_textField_placeholder : String = ""
-    @State var halfModal_height : CGFloat = 300
-
     @State var newItem_type : new_StepOrIngredient = .Step
     @State var ingredientUnit_index = 0
-
-    // Sample Data
-    @State var steps : [Step] = [
-        
+    
+    //Sample Data
+    @State var steps:[Step] = [
+        //        Step(description: "add eggs", orderNumber: 0),
+        //        Step(description: "add eggs", orderNumber: 1),
+        //        Step(description: "add eggs", orderNumber: 2),
+        //        Step(description: "add eggs", orderNumber: 3),
+        //        Step(description: "add eggs", orderNumber: 4),
+        //        Step(description: "add eggs", orderNumber: 5),
+        //        Step(description: "add eggs", orderNumber: 6),
+        //        Step(description: "add eggs", orderNumber: 7)
     ]
-    
-    @State var ingredients : [Ingredient] = [
-        
+    @State var ingredients:[Ingredient] = [
+        //        Ingredient(name: "eggs", amount: 3, amountUnit: .whole, orderNumber: 0),
+        //        Ingredient(name: "parsley", amount: 2, amountUnit: .whole, orderNumber: 1),
+        //        Ingredient(name: "eggs", amount: 3, amountUnit: .whole, orderNumber: 2),
+        //        Ingredient(name: "parsley", amount: 2, amountUnit: .whole, orderNumber: 3),
+        //        Ingredient(name: "eggs", amount: 3, amountUnit: .whole, orderNumber: 4),
+        //        Ingredient(name: "parsley", amount: 2, amountUnit: .whole, orderNumber: 5),
+        //        Ingredient(name: "eggs", amount: 3, amountUnit: .whole, orderNumber: 6),
+        //        Ingredient(name: "parsley", amount: 2, amountUnit: .whole, orderNumber: 7),
+        //        Ingredient(name: "eggs", amount: 3, amountUnit: .whole, orderNumber: 8),
+        //        Ingredient(name: "parsley", amount: 2, amountUnit: .whole, orderNumber: 9),
+        //        Ingredient(name: "eggs", amount: 3, amountUnit: .whole, orderNumber: 10),
+        //        Ingredient(name: "parsley", amount: 2, amountUnit: .whole, orderNumber: 11),
+        //        Ingredient(name: "eggs", amount: 3, amountUnit: .whole, orderNumber: 12),
+        //        Ingredient(name: "parsley", amount: 2, amountUnit: .whole, orderNumber: 13),
+        //        Ingredient(name: "eggs", amount: 3, amountUnit: .whole, orderNumber: 14),
+        //        Ingredient(name: "parsley", amount: 2, amountUnit: .whole, orderNumber: 15),
+        //        Ingredient(name: "eggs", amount: 3, amountUnit: .whole, orderNumber: 10),
+        //        Ingredient(name: "parsley", amount: 2, amountUnit: .whole, orderNumber: 11),
+        //        Ingredient(name: "eggs", amount: 3, amountUnit: .whole, orderNumber: 12),
+        //        Ingredient(name: "parsley", amount: 2, amountUnit: .whole, orderNumber: 13),
+        //        Ingredient(name: "eggs", amount: 3, amountUnit: .whole, orderNumber: 14),
+        //        Ingredient(name: "parsley", amount: 2, amountUnit: .whole, orderNumber: 15)
     ]
-    
-    
     var body: some View {
         
         ZStack {
@@ -109,19 +134,20 @@ struct NewPostView: View {
                         VStack {
                             Text("Ingredients")
                                 .padding(.top)
-                                .foregroundColor(.white)
                             
                             
                             ScrollView{
                                 VStack(spacing: 0){
                                     if ingredients.count > 0 {
                                         
-                                        ForEach(ingredientVM.ingredients) { ingredient in
+                                        ForEach(ingredients, id: \.id) { ingredient in
                                             HStack {
-                                                Text("\(ingredient.amount) \(ingredient.name) ")
+                                                Text("\(ingredient.amount.stringWithoutZeroFraction)  \(ingredient.amountUnit.rawValue) of \(ingredient.name) ")
+                                                    .padding(.bottom, 3)
                                                 
                                                 Spacer()
                                             }
+                                            .foregroundColor(.init(red: 108/255, green: 204/255, blue: 108/255))
                                         }
                                     }else {
                                         Button(action: {
@@ -143,17 +169,17 @@ struct NewPostView: View {
                             .frame(width: UIScreen.main.bounds.width/2)
                             .clipped()
                         }
-                        .background(Color.black)
+                        .background(Color.clear)
                         
                         
                         Button(action: {
                             self.update_halfModal(title: "ADD AN INGREDIENT", placeholder: "Enter new ingredient", itemType: .Ingredient, height: 470)
-                            self.halfModal_shown.toggle()
+                            self.halfModal_shown = true
                         }) {
                             Image(systemName: "plus.circle.fill")
                                 .padding()
                                 .font(.system(size: 20))
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                                 .opacity(0.7)
                         }
                     }
@@ -164,17 +190,16 @@ struct NewPostView: View {
                                 .padding(.top)
                             ScrollView{
                                 VStack(spacing: 0){
-                                    if steps.count < 0 {
+                                    if steps.count > 0 {
                                         
-                                        ForEach(stepVM.steps) { step in
-                                            
+                                        ForEach(steps, id: \.id) {step in
                                             HStack {
-                                                Text("\(step.orderNumber). " + step.description)
-                                                
+                                                Text("\(step.orderNumber + 1). " + step.description)
+
                                                 Spacer()
                                             }
                                         }
-                                    } else if steps.count >= 0 {
+                                    } else {
                                         Button(action: {
                                             self.update_halfModal(title: "ADD A STEP", placeholder: "Enter new step", itemType: .Step, height: 380)
                                             self.halfModal_shown = true
@@ -194,7 +219,7 @@ struct NewPostView: View {
                             //                            Text("Add New")
                             //                                .padding()
                         }
-                        .background(Color.green)
+                        .background(Color.clear)
                         
                         Button(action: {
                             self.update_halfModal(title: "ADD A STEP", placeholder: "Enter new step", itemType: .Step, height: 380)
@@ -208,7 +233,37 @@ struct NewPostView: View {
                                 .opacity(0.7)
                         }
                     }
-                    
+                    // SUBIT BUTTON
+//                    Button(action: {
+//                        if let thisImage = self.image {
+//                            let thisRecipePost = RecipePost(steps: self.steps,
+//                                                            ingredients: self.ingredients,
+//                                                          //  postingUser: self.env.currentUser.establishedID,
+//                                                            postingUser: Auth.auth().currentUser?.uid ?? "[ missing uid ]",
+//                                                            description: "",
+//                                                            numberOfLikes: 0,
+//                                                            image: Image(uiImage: thisImage)
+//
+//                            )
+//
+//                            print(thisRecipePost.dictionary)
+//
+//                            firestoreSubmit_data(docRef_string: "recipe/\(thisRecipePost.id)", dataToSave: thisRecipePost.dictionary, completion: {_ in })
+//                        } else {
+//                            let alertView = SPAlertView(title: "Add a photo", message: "You cannot submit a recipe without a photo", preset:  SPAlertIconPreset.error)
+//                          //  alertView.duration = 3
+//                            alertView.present()
+//                        }
+//                    }) {
+//                        Text("SUBMIT RECIPE")
+//                            .font(.headline)
+//                            .foregroundColor(.white)
+//                            .padding(20)
+//                            .frame(height:48)
+//                            .background(darkBlue)
+//                            .cornerRadius(24)
+//                            .padding(10)
+//                    }
                 }
                 
             }
@@ -219,12 +274,75 @@ struct NewPostView: View {
             
             // half sheet
             HalfModalView(isShown: $halfModal_shown, modalHeight: halfModal_height) {
-                BottomModalView(halfModal_title: $halfModal_title, halfModal_textField1_val: $halfModal_textField1_val, halfModal_textField2_val: $halfModal_textField2_val, halfModal_textField_placeholder: $halfModal_textField_placeholder, newItem_type: $newItem_type, ingredientUnit_index: $ingredientUnit_index)
+                
+                VStack{
+                    Spacer().frame(height:15)
+                    Text("\(self.halfModal_title)").font(.headline)
+                    VStack{
+                        HStack{
+                            if self.newItem_type == .Ingredient {
+                                TextField("#", text: self.$halfModal_textField1_val)
+                                    .frame(width:40)
+                                    .padding(10)
+                                    .background(
+                                        Rectangle()
+                                            .cornerRadius(10)
+                                            .foregroundColor(Color.init(red: 0.95, green: 0.95, blue: 0.95))
+                                        
+                                    )
+                                    .padding(20)
+                                    .keyboardType(.numberPad)
+                            }
+                            
+                            // step + ingredient
+                            TextField("\(self.halfModal_textField_placeholder)", text: self.$halfModal_textField2_val)
+                                .padding(10)
+                                .background(
+                                    Rectangle()
+                                        .cornerRadius(10)
+                                        .foregroundColor(Color.init(red: 0.95, green: 0.95, blue: 0.95))
+                                    
+                                )
+                                .padding(20)
+                        }
+                        
+                        if self.newItem_type == .Ingredient {
+                            Picker(selection: self.$ingredientUnit_index, label: Text("Unit")){
+                                ForEach(0..<IngredientUnit.allCases.count){
+                                    Text(IngredientUnit.allCases[$0].rawValue).tag($0)
+                                }
+                            }
+                            .labelsHidden()
+                            .frame(height:90)
+                            .clipped()
+                            .padding()
+                            
+                        }
+                    }
+                    
+                    Button(action: {
+                        self.add_newItem()
+                    }){
+                        Image(systemName: "plus.circle.fill")
+                            .font(.system(size: 35))
+                            .foregroundColor(.init(red: 110/255, green: 210/255, blue: 110/255))
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    Spacer()
+                    
+                }
             }
         }
         
     }
-    func update_halfModal(title:String, placeholder:String, itemType:new_StepOrIngredient, height:CGFloat ){
+    func update_halfModal(title:String, placeholder:String, itemType:new_StepOrIngredient, height:CGFloat){
+        halfModal_textField1_val = ""
+        halfModal_textField2_val = ""
         halfModal_title = title
         halfModal_textField_placeholder = placeholder
         newItem_type = itemType
@@ -232,18 +350,57 @@ struct NewPostView: View {
         
     }
     
-//    func add_newItem(){
-//        if newItem_type == .Step {
-//            //            steps.append(Step(description: halfModal_textField_val, orderNumber: steps.count))
-//            steps.append(Step(dictionary: [
-//                "description" : halfModal_textField_val,
-//                "orderNumber" : steps.count
-//            ]))
-//        }
-//        UIApplication.shared.endEditing()
-//        halfModal_shown = false
-//    }
+    func possible_stringToDouble(_ stringToValidate:String) -> Double?{
+        let val:Double? = Double(stringToValidate) ?? nil
+        
+        if let val = val {
+            return val
+        } else {
+            return nil
+        }
+        
+    }
+    func hideModal(){
+        
+        UIApplication.shared.endEditing()
+        halfModal_shown = false
+    }
+    
+    func add_newItem(){
+        if halfModal_textField2_val == "" {
+            let alertView = SPAlertView(title: newItem_type == .Step ? "Please add a step" : "Please add an Ingredient", message: "Make sure no textfields are left blank", preset: SPAlertIconPreset.error)
+          //  alertView.duration = 3 (fix) - not working
+            alertView.present()
+        } else {
+            if newItem_type == .Step {
+                steps.append(Step(description: halfModal_textField2_val,
+                                  orderNumber: steps.count))
+                
+                hideModal()
+                print("DEBUG : Steps - \(steps)")
+            } else if newItem_type == .Ingredient{
+                
+                if let amount = possible_stringToDouble(halfModal_textField1_val) {
+                    let thisIngredientUnit = IngredientUnit.allCases[ingredientUnit_index]
+                    
+                    ingredients.append(Ingredient(name: halfModal_textField2_val,
+                                                  amount: amount,
+                                                  amountUnit: thisIngredientUnit,
+                                                  orderNumber: ingredients.count))
+                    hideModal()
+                    print("DEBUG : Steps - \(ingredients)")
+
+                } else {
+                    let alertView = SPAlertView(title: "Check the amount", message: "Please enter a number (i.e. \"1\" or \"3.4\")", preset: SPAlertIconPreset.error)
+               //     alertView.duration = 3  (fix) - not working
+                    alertView.present()
+                }
+                
+            }
+        }
+    }
 }
+
 
 struct NewPostView_Previews: PreviewProvider {
     static var previews: some View {

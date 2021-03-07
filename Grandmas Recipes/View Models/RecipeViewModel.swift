@@ -12,14 +12,23 @@ enum new_StepOrIngredient{
 }
 
 class RecipeViewModel: ObservableObject {
-    @Published var recipe = [RecipePost]()
-    @Published var ingredients = [Ingredient]()
-    @Published var steps = [Step]()
+//    @Published var recipe = [RecipePost]()
+//    @Published var ingredients = [Ingredient]()
+//    @Published var steps = [Step]()
+//
+//    //var newItem_type : new_StepOrIngredient
+//    @State var Ingredient_index = 0
+//  //  @State var halfModal_textField1_val : String = "" // may need to be published
+//  //  @State var halfModal_textField2_val : String = ""
+//
+//    @Published var halfModal_textField1_val  : String = ""
+//    @Published var halfModal_textField2_val  : String = ""
+//    @Published var ingredientUnit_index  = 0
+//    @Published var halfModal_shown  = false
+//
+//
     
-    //var newItem_type : new_StepOrIngredient
-    @State var Ingredient_index = 0
-    @State var halfModal_textField_val : String = ""
-    @State var halfModal_shown = false
+//    @State var halfModal_shown = false
     
     
     init() {
@@ -30,25 +39,5 @@ class RecipeViewModel: ObservableObject {
         
     }
     
-    func add_newStep(){
-            //            steps.append(Step(description: halfModal_textField_val, orderNumber: steps.count))
-            steps.append(Step(dictionary: [
-                "description" : halfModal_textField_val,
-                "orderNumber" : steps.count
-            ]))
-        
-        UIApplication.shared.endEditing()
-        halfModal_shown = false
-    }
-    
-    func add_newIngredient(){
-            //            steps.append(Step(description: halfModal_textField_val, orderNumber: steps.count))
-        ingredients.append(Ingredient(dictionary: [
-                "description" : halfModal_textField_val,
-                "orderNumber" : steps.count
-            ]))
-        
-        UIApplication.shared.endEditing()
-        halfModal_shown = false
-    }
+
 }

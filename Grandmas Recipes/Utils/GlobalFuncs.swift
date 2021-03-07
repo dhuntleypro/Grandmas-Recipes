@@ -5,7 +5,10 @@
 //  Created by Darrien Huntley on 3/7/21.
 //
 
+import Foundation
 import SwiftUI
+import Combine
+import Firebase
 
 // USE ANYWHERE IN CODE
 
@@ -63,3 +66,50 @@ enum DragState {
 }
 
 
+extension Double {
+    var stringWithoutZeroFraction: String {
+        return truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
+    }
+}
+
+func firestoreSubmit_data(docRef_string:String, dataToSave:[String:Any], completion: @escaping (Any) -> Void, showDetails: Bool = false){
+    
+    let docRef = Firestore.firestore().document(docRef_string)
+    print("setting data")
+    docRef.setData(dataToSave){ (error) in
+        if let error = error {
+            print("error = \(error)")
+            completion(error)
+        } else {
+            print("data uploaded successfully")
+            if showDetails {
+                print("dataUploaded = \(dataToSave)")
+            }
+            
+        }
+    }
+}
+
+extension Array where Element == Step {
+    func formatForFirebase() -> [[String:Any]]{
+        var returnVal:[[String:Any]] = []
+        for element in self {
+            returnVal.append(element.dictionary)
+        }
+        
+        return returnVal
+    }
+
+}
+
+extension Array where Element == Ingredient {
+    func formatForFirebase() -> [[String:Any]]{
+        var returnVal:[[String:Any]] = []
+        for element in self {
+            returnVal.append(element.dictionary)
+        }
+        
+        return returnVal
+    }
+
+}
