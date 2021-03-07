@@ -19,8 +19,6 @@ struct Grandmas_RecipesApp: App {
           //  TabRootView()
            // SignupView()
             AppNavigation().environmentObject(AuthViewModel.shared)
-
-            
         }
     }
 }
