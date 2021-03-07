@@ -22,7 +22,9 @@ struct NewPostView: View {
     
     
     @State var halfModal_title : String = ""
-    @State var halfModal_textField_val : String = ""
+    @State var halfModal_textField1_val : String = ""
+    @State var halfModal_textField2_val : String = ""
+
     @State var halfModal_textField_placeholder : String = ""
     @State var halfModal_height : CGFloat = 300
 
@@ -167,14 +169,14 @@ struct NewPostView: View {
                                         ForEach(stepVM.steps) { step in
                                             
                                             HStack {
-                                                Text(step.description)
+                                                Text("\(step.orderNumber). " + step.description)
                                                 
                                                 Spacer()
                                             }
                                         }
                                     } else if steps.count >= 0 {
                                         Button(action: {
-                                            self.update_halfModal(title: "ADD A STEP", placeholder: "Enter new step", itemType: .Ingredient, height: 470)
+                                            self.update_halfModal(title: "ADD A STEP", placeholder: "Enter new step", itemType: .Step, height: 380)
                                             self.halfModal_shown = true
                                         }) {
                                             Text("Add some steps")
@@ -195,7 +197,7 @@ struct NewPostView: View {
                         .background(Color.green)
                         
                         Button(action: {
-                            self.update_halfModal(title: "ADD A STEP", placeholder: "Enter new step", itemType: .Ingredient, height: 470)
+                            self.update_halfModal(title: "ADD A STEP", placeholder: "Enter new step", itemType: .Step, height: 380)
                             
                             self.halfModal_shown.toggle()
                         }) {
@@ -216,14 +218,13 @@ struct NewPostView: View {
             }
             
             // half sheet
-            HalfModalView(isShown: $halfModal_shown, modalHeight: 380) {
-                BottomModalView(halfModal_title: $halfModal_title, halfModal_textField_val: $halfModal_textField_val, halfModal_textField_placeholder: $halfModal_textField_placeholder, newItem_type: $newItem_type, ingredientUnit_index: $ingredientUnit_index)
+            HalfModalView(isShown: $halfModal_shown, modalHeight: halfModal_height) {
+                BottomModalView(halfModal_title: $halfModal_title, halfModal_textField1_val: $halfModal_textField1_val, halfModal_textField2_val: $halfModal_textField2_val, halfModal_textField_placeholder: $halfModal_textField_placeholder, newItem_type: $newItem_type, ingredientUnit_index: $ingredientUnit_index)
             }
         }
-        .navigationBarHidden(true)
         
     }
-    func update_halfModal(title:String, placeholder:String, itemType:new_StepOrIngredient, height:CGFloat){
+    func update_halfModal(title:String, placeholder:String, itemType:new_StepOrIngredient, height:CGFloat ){
         halfModal_title = title
         halfModal_textField_placeholder = placeholder
         newItem_type = itemType

@@ -10,7 +10,9 @@ import SwiftUI
 struct BottomModalView: View {
     @StateObject var recipeVM = RecipeViewModel()
     @Binding var halfModal_title : String
-    @Binding var halfModal_textField_val : String
+    @Binding var halfModal_textField1_val : String
+    @Binding var halfModal_textField2_val : String
+
     @Binding var halfModal_textField_placeholder : String
     
     @Binding var newItem_type : new_StepOrIngredient
@@ -23,9 +25,10 @@ struct BottomModalView: View {
             
             Text("\(self.halfModal_title)")
                 .font(.headline)
+            VStack {
             HStack{
                 if newItem_type == .Ingredient {
-                    TextField("#", text: self.$halfModal_textField_val)
+                    TextField("#", text: self.$halfModal_textField1_val)
                         .frame(width:40)
                         .padding(10)
                         .background(
@@ -39,7 +42,7 @@ struct BottomModalView: View {
                 }
                 
                 
-                TextField("\(self.halfModal_textField_placeholder)", text: self.$halfModal_textField_val)
+                TextField("\(self.halfModal_textField_placeholder)", text: self.$halfModal_textField2_val)
                     .padding(10)
                     .background(
                         Rectangle()
@@ -49,12 +52,14 @@ struct BottomModalView: View {
                 )
                     .padding(20)
             }
+            }
             if self.newItem_type == .Ingredient {
                 Picker(selection: self.$ingredientUnit_index, label: Text("Unit")){
-//                    ForEach(0..<IngredientUnit.allCases.count){
-//                        Text(IngredientUnit.allCases[$0].rawValue).tag($0)
-//                    }
+                    ForEach(0..<IngredientUnit.allCases.count){
+                        Text(IngredientUnit.allCases[$0].rawValue).tag($0)
+                    }
                 }
+                .labelsHidden()
                 .frame(height:90)
                 .clipped()
                 .padding()
@@ -83,6 +88,6 @@ struct BottomModalView: View {
 
 struct BottomModalView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomModalView(halfModal_title: .constant(""), halfModal_textField_val: .constant(""), halfModal_textField_placeholder: .constant(""), newItem_type: .constant(.Step), ingredientUnit_index: .constant(0))
+        BottomModalView(halfModal_title: .constant("title"), halfModal_textField1_val: .constant("1"), halfModal_textField2_val: .constant("bacon"), halfModal_textField_placeholder: .constant("yoo"), newItem_type: .constant(.Step), ingredientUnit_index: .constant(0))
     }
 }

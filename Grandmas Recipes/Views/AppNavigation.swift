@@ -19,8 +19,8 @@ struct AppNavigation: View {
                     VStack {
                         MainTabView(selectedIndex : $selectedIndex)
                     }
-                    .navigationBarTitle(tabTitle(forIndex: selectedIndex))
-                    .navigationBarTitleDisplayMode(.inline)
+                //    .navigationBarTitle(tabTitle(forIndex: selectedIndex))
+                //    .navigationBarTitleDisplayMode(.inline)
                 }
             } else {
                 LoginView()
@@ -30,15 +30,15 @@ struct AppNavigation: View {
         
     }
     
-    // NOT WORKING
-    func tabTitle(forIndex index : Int) -> String {
-        switch index {
-        case 0: return "Home"
-        case 1: return "Search"
-        case 2: return "Messages"
-        default: return ""
-        }
-    }
+//    // NOT WORKING
+//    func tabTitle(forIndex index : Int) -> String {
+//        switch index {
+//        case 0: return "Home"
+//        case 1: return "Search"
+//        case 2: return "Messages"
+//        default: return ""
+//        }
+//    }
 }
 
 struct AppNavigation_Previews: PreviewProvider {

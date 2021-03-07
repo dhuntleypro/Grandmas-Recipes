@@ -23,7 +23,7 @@ struct Ingredient: Identifiable {
         self.id = dictionary["uid"] as? String ?? ""
         self.name = dictionary["name"] as? String ?? ""
         self.amount = dictionary["amount"] as? Double ?? 0.0
-        self.amountUnit = dictionary["amountUnit"] as! IngredientUnit 
+        self.amountUnit = dictionary["amountUnit"] as? IngredientUnit ?? .cup
         self.orderNumber = dictionary["orderNumber"] as? Int ?? 0
 
     }
@@ -31,8 +31,7 @@ struct Ingredient: Identifiable {
 
 
 
-enum IngredientUnit: String {
-    // value = Display name
+enum IngredientUnit:String, CaseIterable {
     case cup = "cup"
     case tablespoon = "tablespoon"
     case teaspoon = "teaspoon"
@@ -43,6 +42,6 @@ enum IngredientUnit: String {
     case mg = "mg"
     case g = "g"
     case mL = "mL"
-    case L = "Liter"
+    case L = "L"
     case whole = "whole"
 }

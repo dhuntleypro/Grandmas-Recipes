@@ -20,6 +20,7 @@ struct MainTabView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
+                .navigationBarHidden(true)
             
             
             
@@ -32,6 +33,8 @@ struct MainTabView: View {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }
+                .navigationBarHidden(true)
+
             
             NewPostView()
                 .onTapGesture {
@@ -42,7 +45,8 @@ struct MainTabView: View {
                     Image(systemName: "plus.square")
                     Text("Add Recipe")
                 }
-            
+                .navigationBarHidden(true)
+
             ProfileView()
                 .onTapGesture {
                     selectedIndex = 3
@@ -52,6 +56,8 @@ struct MainTabView: View {
                     Image(systemName: "person")
                     Text("Profile")
                 }
+                .navigationBarHidden(true)
+
             
         }
     }
