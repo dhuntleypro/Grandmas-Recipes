@@ -69,7 +69,7 @@ struct NewPostView: View {
     var body: some View {
         
         ZStack {
-            VStack {
+            VStack(spacing: 0) {
                 Spacer().frame(height: 65) //(fix) -- hard coded need to fit all apps
                 ZStack(alignment: .topTrailing) {
                     HStack {
@@ -86,7 +86,7 @@ struct NewPostView: View {
                                 .scaledToFit()
                                 .padding(130)
                                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
-                                .background(Color.init(red: 0.95, green: 0.95, blue: 0.95))
+                                .background(Color.init(red: 1, green: 1, blue: 1))
                         }
                         
                     }
@@ -125,9 +125,6 @@ struct NewPostView: View {
                     })
                     
                 }
-                
-                
-                
                 HStack {
                     
                     ZStack(alignment: .topTrailing) {
@@ -184,6 +181,8 @@ struct NewPostView: View {
                         }
                     }
                     
+                    Divider()
+                    
                     ZStack(alignment: .topTrailing) {
                         VStack {
                             Text("Steps")
@@ -233,39 +232,41 @@ struct NewPostView: View {
                                 .opacity(0.7)
                         }
                     }
-                    // SUBIT BUTTON
-//                    Button(action: {
-//                        if let thisImage = self.image {
-//                            let thisRecipePost = RecipePost(steps: self.steps,
-//                                                            ingredients: self.ingredients,
-//                                                          //  postingUser: self.env.currentUser.establishedID,
-//                                                            postingUser: Auth.auth().currentUser?.uid ?? "[ missing uid ]",
-//                                                            description: "",
-//                                                            numberOfLikes: 0,
-//                                                            image: Image(uiImage: thisImage)
-//
-//                            )
-//
-//                            print(thisRecipePost.dictionary)
-//
-//                            firestoreSubmit_data(docRef_string: "recipe/\(thisRecipePost.id)", dataToSave: thisRecipePost.dictionary, completion: {_ in })
-//                        } else {
-//                            let alertView = SPAlertView(title: "Add a photo", message: "You cannot submit a recipe without a photo", preset:  SPAlertIconPreset.error)
-//                          //  alertView.duration = 3
-//                            alertView.present()
-//                        }
-//                    }) {
-//                        Text("SUBMIT RECIPE")
-//                            .font(.headline)
-//                            .foregroundColor(.white)
-//                            .padding(20)
-//                            .frame(height:48)
-//                            .background(darkBlue)
-//                            .cornerRadius(24)
-//                            .padding(10)
-//                    }
-                }
+                    
+                }.background(Color.init(red : 0.95 , green: 0.95 , blue: 0.95))
                 
+                // SUBIT BUTTON
+                    Button(action: {
+                        if let thisImage = self.image {
+                            let thisRecipePost = RecipePost(steps: self.steps,
+                                                            ingredients: self.ingredients,
+                                                          //  postingUser: self.env.currentUser.establishedID,
+                                                            postingUser: Auth.auth().currentUser?.uid ?? "[ missing uid ]",
+                                                            description: "",
+                                                            numberOfLikes: 0,
+                                                            image: Image(uiImage: thisImage)
+
+                            )
+
+                            print(thisRecipePost.dictionary)
+
+                            firestoreSubmit_data(docRef_string: "recipe/\(thisRecipePost.id)", dataToSave: thisRecipePost.dictionary, completion: {_ in })
+                        } else {
+                            let alertView = SPAlertView(title: "Add a photo", message: "You cannot submit a recipe without a photo", preset:  SPAlertIconPreset.error)
+                          //  alertView.duration = 3
+                            alertView.present()
+                        }
+                    }) {
+                        Text("SUBMIT RECIPE")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(width: UIScreen.main.bounds.width)
+                            .padding(20)
+                            .background(Color.black)
+                    }
+                
+                
+                Spacer().frame(height: 65)
             }
             .sheet(isPresented: $showImagePicker) {
                 CustomImagePickerWindow(image: $image, sourceType: $sourceType)

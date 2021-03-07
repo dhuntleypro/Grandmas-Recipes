@@ -90,26 +90,5 @@ func firestoreSubmit_data(docRef_string:String, dataToSave:[String:Any], complet
     }
 }
 
-extension Array where Element == Step {
-    func formatForFirebase() -> [[String:Any]]{
-        var returnVal:[[String:Any]] = []
-        for element in self {
-            returnVal.append(element.dictionary)
-        }
-        
-        return returnVal
-    }
 
-}
 
-extension Array where Element == Ingredient {
-    func formatForFirebase() -> [[String:Any]]{
-        var returnVal:[[String:Any]] = []
-        for element in self {
-            returnVal.append(element.dictionary)
-        }
-        
-        return returnVal
-    }
-
-}

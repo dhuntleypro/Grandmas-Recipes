@@ -27,20 +27,20 @@ struct Ingredient: Identifiable {
         ]
     }
     
-    
-    
-    
-    
-    
-//    init(dictionary : [String: Any]) {
-//        self.id = dictionary["uid"] as? String ?? ""
-//        self.name = dictionary["name"] as? String ?? ""
-//        self.amount = dictionary["amount"] as? Double ?? 0.0
-//        self.amountUnit = dictionary["amountUnit"] as? IngredientUnit ?? .cup
-//        self.orderNumber = dictionary["orderNumber"] as? Int ?? 0
-//
-//    }
 }
+
+
+//extension Array where Element == Ingredient {
+//    func formatForFirebase() -> [[String:Any]]{
+//        var returnVal:[[String:Any]] = []
+//        for element in self {
+//            returnVal.append(element.dictionary)
+//        }
+//
+//        return returnVal
+//    }
+//
+//}
 
 
 

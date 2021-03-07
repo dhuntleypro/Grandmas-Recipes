@@ -17,6 +17,7 @@ struct RecipePost: Identifiable {
     var numberOfLikes: Int
     var image: Image
     
+    // same only not init it allows me to make sample data
     var dictionary: [String: Any] {
         return [
             "id": id.uuidString,
@@ -27,15 +28,31 @@ struct RecipePost: Identifiable {
             "numberOfLikes": numberOfLikes
         ]
     }
-    
-//    init(dictionary : [String: Any]) {
-//        self.id = dictionary["uid"] as? String ?? ""
-//        self.steps = dictionary["steps"] as! [Step]
-//        self.ingredients = dictionary["ingredients"] as! [Ingredient]
-//        self.postingUser = dictionary["postingUser"] as? String ?? ""
-//        self.description = dictionary["description"] as? String ?? ""
-//        self.numberOfLikes = dictionary["numberOfLikes"] as? Int ?? 0
-//        self.image = dictionary["image"] as! Image
 
- //   }
+}
+
+// FIREBASE ( coverts for firebase string : Any )
+extension Array where Element == Step {
+    func formatForFirebase() -> [[String:Any]]{
+        var returnVal:[[String:Any]] = []
+        for element in self {
+            returnVal.append(element.dictionary)
+        }
+        
+        return returnVal
+    }
+
+}
+
+
+extension Array where Element == Ingredient {
+    func formatForFirebase() -> [[String:Any]]{
+        var returnVal:[[String:Any]] = []
+        for element in self {
+            returnVal.append(element.dictionary)
+        }
+        
+        return returnVal
+    }
+
 }

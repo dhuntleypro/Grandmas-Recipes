@@ -10,13 +10,9 @@ import Firebase
 
 
 struct Step: Identifiable {
-   // var id: String
     var id = UUID()
-   var description: String
-   var orderNumber: Int
-
-    
-    
+    var description: String
+    var orderNumber: Int
     var dictionary: [String: Any] {
         return [
             "id": id.uuidString,
@@ -25,14 +21,17 @@ struct Step: Identifiable {
         ]
     }
     
-    
-//    init(dictionary : [String: Any]) {
-//        self.id = dictionary["uid"] as? String ?? ""
-//        self.description = dictionary["description"] as? String ?? ""
-//        self.orderNumber = dictionary["orderNumber"] as? Int ?? 0
-//
-//
-//    }
 }
 
-
+//// FIREBASE ( coverts for firebase string : Any )
+//extension Array where Element == Step {
+//    func formatForFirebase() -> [[String:Any]]{
+//        var returnVal:[[String:Any]] = []
+//        for element in self {
+//            returnVal.append(element.dictionary)
+//        }
+//        
+//        return returnVal
+//    }
+//
+//}
