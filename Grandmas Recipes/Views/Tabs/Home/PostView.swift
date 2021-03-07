@@ -24,7 +24,32 @@ struct PostView: View {
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .background(Color.init(red: 0.95, green: 0.95, blue: 0.95))
                 .opacity(0.8)
-            VStack {
+            
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("3 Ingredients")
+                        .foregroundColor(Color.init(red: 237/255, green: 192/255, blue: 69/255))
+                    Text("15 steps")
+                        .foregroundColor(Color.init(red: 237/255, green: 86/255, blue: 69/255))
+
+                }
+                
+                Spacer()
+                
+                VStack(alignment: .trailing) {
+                    Text("Prep-time: 15 minutes")
+                        .foregroundColor(Color.init(red: 108/255, green: 204/255, blue: 108/255))
+                    Text("Cook-time: 45 minutes")
+                        .foregroundColor(Color.init(red: 108/255, green: 172/255, blue: 204/255))
+
+
+                }
+            }
+            .padding([.top, .leading, .trailing] , 5)
+            .font(.system(size: 15, weight: .bold))
+            
+            
+            VStack(spacing: 0) {
                 HStack {
                     
                     Image(systemName: "heart")
@@ -33,6 +58,7 @@ struct PostView: View {
                     Image(systemName: "bookmark")
                     
                 }
+                
                 HStack {
                     Text("\(passed_postingUser)")
                     Text("\(passed_numberOfLikes) likes")
@@ -51,7 +77,7 @@ struct PostView: View {
 
                 
             }
-            .padding()
+            .padding(5)
            
         }
       //  .background(Color.orange)

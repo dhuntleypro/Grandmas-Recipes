@@ -33,13 +33,21 @@ struct MainTabView: View {
                     Text("Search")
                 }
             
-            
-            
-            ProfileView()
+            NewPostView()
                 .onTapGesture {
                     selectedIndex = 2
                 }
                 .tag(2)
+                .tabItem {
+                    Image(systemName: "plus.square")
+                    Text("Add Recipe")
+                }
+            
+            ProfileView()
+                .onTapGesture {
+                    selectedIndex = 3
+                }
+                .tag(3)
                 .tabItem {
                     Image(systemName: "person")
                     Text("Profile")

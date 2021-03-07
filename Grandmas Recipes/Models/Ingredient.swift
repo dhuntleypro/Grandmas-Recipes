@@ -8,9 +8,8 @@
 import SwiftUI
 import Firebase
 
-enum IngredientUnit {
-    case cup, spoon, teaspoon, pinch, dash, Ib, kg, mg, g, mL, L
-}
+
+
 
 
 struct Ingredient: Identifiable {
@@ -30,3 +29,20 @@ struct Ingredient: Identifiable {
     }
 }
 
+
+
+enum IngredientUnit: String {
+    // value = Display name
+    case cup = "cup"
+    case tablespoon = "tablespoon"
+    case teaspoon = "teaspoon"
+    case pinch = "pinch"
+    case dash = "dash"
+    case lb = "lb"
+    case kg = "kg"
+    case mg = "mg"
+    case g = "g"
+    case mL = "mL"
+    case L = "Liter"
+    case whole = "whole"
+}
