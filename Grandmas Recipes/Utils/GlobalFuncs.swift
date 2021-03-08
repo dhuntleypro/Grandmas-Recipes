@@ -81,13 +81,13 @@ func firestoreSubmit_data(docRef_string:String, dataToSave:[String:Any], complet
     docRef.setData(dataToSave){ (error) in
         if let error = error {
             print("error = \(error)")
-            completion(error)
         } else {
             print("data uploaded successfully")
             if showDetails {
                 print("dataUploaded = \(dataToSave)")
             }
-            
+            completion(true)
+
         }
     }
 }
@@ -122,6 +122,8 @@ func uploadImage(_ referenceString:String, image:UIImage, completion: @escaping 
                 print("an error has occurred - \(err.localizedDescription)")
             } else {
                 print("image uploaded successfully")
+                completion(true)
+
             }
         }
     } else {

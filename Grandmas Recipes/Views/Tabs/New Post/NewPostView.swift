@@ -11,7 +11,7 @@ import Firebase
 
 struct NewPostView: View {
     @EnvironmentObject var authEO: AuthViewModel
-
+    
     @ObservedObject var recipeVM = RecipeViewModel()
     
     @ObservedObject var stepVM = StepViewModel()
@@ -21,7 +21,7 @@ struct NewPostView: View {
     @State var showImagePicker = false
     @State var sourceType:UIImagePickerController.SourceType = .camera
     @State private var images:[Identifiable_UIImage] = []
-
+    
     @State var halfModal_shown = false
     
     @State var halfModal_title = ""
@@ -131,7 +131,7 @@ struct NewPostView: View {
                                                     .padding(.trailing, 3)
                                                     .background(Color.init(red: 0.85, green: 0.85, blue: 0.85))
                                                     .padding(.bottom, 4)
-                                                .cornerRadius(5)
+                                                    .cornerRadius(5)
                                             }.foregroundColor(.init(red: 0.3, green: 0.3, blue: 0.3))
                                         } else {
                                             Button(action: {
@@ -187,11 +187,11 @@ struct NewPostView: View {
                                         if steps.count > 0 {
                                             ForEach(steps, id: \.id) {thisStep in
                                                 Text("\(thisStep.orderNumber + 1). " + thisStep.description)
-                                                .padding(5)
+                                                    .padding(5)
                                                     .padding(.leading, 3)
                                                     .padding(.trailing, 3)
-                                                .background(Color.init(red: 0.85, green: 0.85, blue: 0.85))
-                                                .padding(.bottom, 4)
+                                                    .background(Color.init(red: 0.85, green: 0.85, blue: 0.85))
+                                                    .padding(.bottom, 4)
                                             }
                                             .foregroundColor(.init(red: 0.3, green: 0.3, blue: 0.3))
                                         } else {
@@ -245,68 +245,75 @@ struct NewPostView: View {
                             if actionsCompleted == actionsToComplete {
                                 //Add a function to clear all the data on this page
                                 let alertView = SPAlertView(title: "Recipe Submitted", message: "Recipe submitted successfully!", preset: SPAlertIconPreset.done)
-                              //  alertView.duration = 3
+                                //  alertView.duration = 3
                                 alertView.present()
                                 self.clearPage()
                             }
                         }
                         if self.images.count > 0 {
-//                            guard let currentUid = AuthViewModel.shared.userSession?.uid else { return }
-//
-//                            let currentUserRef = COLLECTION_USERS.document(currentUid).collection(user.id).document()
-
-                            let thisRecipePost = RecipePost(steps: self.steps,
-                                                            ingredients: self.ingredients,
-                                                            postingUser: Auth.auth().currentUser?.uid ?? "[ missing uid ]",
-                                                            description: "",
-                                                            numberOfLikes: 0,
-                                                            image: Image(uiImage: self.images[0].image)
-                                
-                            )
-                            
-                            print("DEBUG : FULL RECIPE:: \(thisRecipePost.dictionary)")
-                            if let user = AuthViewModel.shared.user {
-
-                                print("DEBUG0: publishedRecipes -- \(user.publishedRecipes)")
-                            }
-//
+                            // check for user
+                            guard let currentUid = AuthViewModel.shared.userSession?.uid else { return }
+                           
                             if var user = AuthViewModel.shared.user {
-
-                               user.publishedRecipes.append(thisRecipePost.id.uuidString)
-                              
+                                
+                                // data
+                                let thisRecipePost = RecipePost(steps: self.steps,
+                                                                ingredients: self.ingredients,
+                                                                //  postingUser: Auth.auth().currentUser?.uid ?? "[ missing uid ]",
+                                                                postingUser: currentUid,
+                                                                description: "",
+                                                                numberOfLikes: 0,
+                                                                image: Image(uiImage: self.images[0].image)
+                                                                
+                                )
+                                
+                                print("DEBUG: thisRecipePost -- \(thisRecipePost)")
+                                
+                                // update thisRecipePost.id
+                                user.publishedRecipes.append(thisRecipePost.id.uuidString)
+                                
+                                // save thisRecipePost to ....
                                 firestoreSubmit_data(docRef_string: "recipe/\(thisRecipePost.id)", dataToSave: thisRecipePost.dictionary, completion: {_ in
+                                    
                                     actionsCompleted += 1
                                     check_success()
-
+                                    
                                 })
-                            }
-                            // fix
-                            if let user = AuthViewModel.shared.user {
-                                firestoreUpdate_data(docRef_string: "users/\(Auth.auth().currentUser?.uid ?? "[ missing uid ]")", //dataToUpdate: ["publishedRecipes": thisRecipePost.dictionary], completion: {_ in
-                                    dataToUpdate: ["publishedRecipes": user.publishedRecipes], completion: {_ in
+                                
+                                
+                                // update publishedRecipes
+                                firestoreUpdate_data(docRef_string: "users/\(currentUid)", dataToUpdate: ["publishedRecipes": user.publishedRecipes], completion: { _ in
+                                    
                                     actionsCompleted += 1
                                     check_success()
-                                    print("DEBUG2: publishedRecipes -- \(user.publishedRecipes)")
+                                })
+                            
+                            
+                            // upload images
+                            for i in 0...self.images.count-1 {
+                                let image = self.images[i].image
+                                uploadImage("recipe_\(thisRecipePost.id)_\(i)", image: image, completion: {_ in
+                                    actionsCompleted += 1
+                                    check_success()
                                     
                                 })
                             }
                             
-                            for i in 0...self.images.count-1 {
-                                let image = self.images[i].image
-                                    uploadImage("recipe_\(thisRecipePost.id)_\(i)", image: image, completion: {_ in
-                                        actionsCompleted += 1
-                                        check_success()
-                                        
-                                    })
-                                }
-                                
-                                
+                            }
+                            
                             
                             
                         } else {
                             let alertView = SPAlertView(title: "Add a photo", message: "You cannot submit a recipe without a photo", preset: SPAlertIconPreset.error)
-                         //   alertView.duration = 3
+                            //   alertView.duration = 3
                             alertView.present()
+                            
+//
+//                            print("DEBUG2: publishedRecipes -- \(user.publishedRecipes)")
+//                            // Alert - Recipe Submitted
+//                            let alertView = SPAlertView(title: "Recipe Submitted", message: "Recipe Submitted successfully", preset: SPAlertIconPreset.done)
+//                            alertView.present()
+//
                         }
                     }) {
                         Text("SUBMIT RECIPE")
@@ -343,7 +350,7 @@ struct NewPostView: View {
                                             .cornerRadius(10)
                                             .foregroundColor(Color.init(red: 0.95, green: 0.95, blue: 0.95))
                                         
-                                )
+                                    )
                                     .padding(20)
                                     .keyboardType(.numberPad)
                             }
@@ -356,7 +363,7 @@ struct NewPostView: View {
                                         .cornerRadius(10)
                                         .foregroundColor(Color.init(red: 0.95, green: 0.95, blue: 0.95))
                                     
-                            )
+                                )
                                 .padding(20)
                         }
                         if self.newItem_type == .Ingredient {

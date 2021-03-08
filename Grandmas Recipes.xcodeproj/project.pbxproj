@@ -11,6 +11,7 @@
 		868D19C225F4FF00001F2318 /* KeyboardAwareModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D19C125F4FF00001F2318 /* KeyboardAwareModifier.swift */; };
 		868D19C525F50749001F2318 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D19C425F50749001F2318 /* RecipeViewModel.swift */; };
 		8693CD1E25F5AA9D00295678 /* Identifiable_UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8693CD1D25F5AA9D00295678 /* Identifiable_UIImage.swift */; };
+		8693CD2325F6468600295678 /* Me_PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8693CD2225F6468600295678 /* Me_PostView.swift */; };
 		86AF937625F359FC005862E3 /* RecipePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF937525F359FC005862E3 /* RecipePost.swift */; };
 		86AF937925F35B05005862E3 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF937825F35B05005862E3 /* PostView.swift */; };
 		86AF937E25F35E2B005862E3 /* StoryCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF937D25F35E2B005862E3 /* StoryCircleView.swift */; };
@@ -59,6 +60,7 @@
 		868D19C125F4FF00001F2318 /* KeyboardAwareModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAwareModifier.swift; sourceTree = "<group>"; };
 		868D19C425F50749001F2318 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		8693CD1D25F5AA9D00295678 /* Identifiable_UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable_UIImage.swift; sourceTree = "<group>"; };
+		8693CD2225F6468600295678 /* Me_PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Me_PostView.swift; sourceTree = "<group>"; };
 		86AF937525F359FC005862E3 /* RecipePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePost.swift; sourceTree = "<group>"; };
 		86AF937825F35B05005862E3 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		86AF937D25F35E2B005862E3 /* StoryCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCircleView.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				86EBD29E25F3572F0074879C /* UserProfileView.swift */,
+				8693CD2225F6468600295678 /* Me_PostView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				86AF945525F44162005862E3 /* AppNavigation.swift in Sources */,
 				86AF938525F3663B005862E3 /* RegistrationView.swift in Sources */,
 				86AF946225F446FD005862E3 /* Ingredient.swift in Sources */,
+				8693CD2325F6468600295678 /* Me_PostView.swift in Sources */,
 				86AF944925F43EBA005862E3 /* CustomTextField.swift in Sources */,
 				86EBD28025F30F160074879C /* MainTabView.swift in Sources */,
 				86EBD27E25F30F160074879C /* Grandmas_RecipesApp.swift in Sources */,

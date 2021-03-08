@@ -14,61 +14,66 @@ struct ProfileView: View {
     @EnvironmentObject var auth: AuthViewModel
     
     var body: some View {
-        
-        VStack {
-            
-            
-            //PROFILE IMAGE
-            VStack{
-                
-                Image("defaultProfileImage")
-                    .padding(12)
-                    .scaledToFill()
-                    .frame(width: 140, height: 140)
-                    .clipShape(Circle())
-            }
-            .padding(.bottom, 50)
-            
-            HStack{
-                VStack(alignment: .leading, spacing: 20) {
-                    if ((auth.user?.isCurrentUser) != nil) {
-                        
-                        Text("Username: \(auth.user!.username)")
-                            .bold()
-                        
-                        Text("Email: \(auth.user!.email)")
-                            .bold()
-                        
-                        Text("Full Name: \(auth.user!.fullname)")
-                            .bold()
-                        
-                        Text("Id : \(Auth.auth().currentUser?.uid ?? "[ missing uid ]")")
-                        
-                        
-                        
+        ZStack{
+            if ((auth.user?.isCurrentUser) != nil) {
+                VStack{
+                    Image("defaultProfileImage")
+                        .padding(12)
+                        .scaledToFill()
+                        .frame(width: 140, height: 140)
+                        .clipShape(Circle())
+                    HStack{
+                        VStack{
+                            Text("\(auth.user!.fullname)")
+                            Text(" \(auth.user!.username) || \(auth.user!.publishedRecipes.count) Recipe")
+                        }
+//                        Spacer()
+//                        Image(systemName: "timelapse")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width:90, height:90)
+//                            .background(Color.yellow)
+//                            .cornerRadius(45)
+                    }.padding()
+                    HStack{
+                        Button(action: {}){
+                            Spacer()
+                            Text("Message")
+                                .padding(3)
+                            
+                            Spacer()
+                            
+                        }.cornerRadius(5)
+                        Button(action: {}){
+                            Spacer()
+                            Text("Follow")
+                                .padding(3)
+                                .foregroundColor(.white)
+                            Spacer()
+                        }
+                        .background(darkBlue)
+                        .cornerRadius(5)
                     }
+                    ScrollView{
+                        ForEach(0..<self.auth.user!.publishedRecipes.count){ i in
+                            
+                            Me_PostView()
+                        }
+                        
+                    }.background(Color.red)
                     
-                    
-                    Spacer()
                     
                     Button(action: {
                         auth.signOut()
                     }) {
                         Text("Log Out")
                     }
+                    
+                    Text("Id : \(Auth.auth().currentUser?.uid ?? "[ missing uid ]")")
+
                 }
-                .padding()
-                
-                // code here
-                
-                
-                
-                
-                
-               
-                //     .modifier(myClearButtonAdjustable(bgColor: .red))
-                
             }
+            
         }
     }
 }
