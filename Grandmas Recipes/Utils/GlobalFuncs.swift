@@ -74,6 +74,34 @@ extension Double {
     }
 }
 
+
+
+
+
+
+
+// FIREBASE
+
+
+func initalizeListener_currentUser() {
+    guard let currentUid = AuthViewModel.shared.userSession?.uid else { return }
+    Firestore.firestore().document("users/\(currentUid)")
+        .addSnapshotListener { querySnapshot, error in
+            guard let document = querySnapshot else {
+                print("Error fetching docuemtns: \(error!)")
+                return
+            }
+            
+            print("new information found with listener")
+            print("\(document.documentID) => \(document.data())")
+            
+            if let thisData = document.data() {
+                
+            }
+            
+        }
+}
+
 func firestoreSubmit_data(docRef_string:String, dataToSave:[String:Any], completion: @escaping (Any) -> Void, showDetails: Bool = false){
     
     let docRef = Firestore.firestore().document(docRef_string)
@@ -92,23 +120,29 @@ func firestoreSubmit_data(docRef_string:String, dataToSave:[String:Any], complet
     }
 }
 
-func firestoreUpdate_data(docRef_string:String, dataToUpdate:[String:Any], completion: @escaping (Any) -> Void, showDetails: Bool = false){
-    
-    let docRef = Firestore.firestore().document(docRef_string)
-    print("updating data")
-    docRef.setData(dataToUpdate, merge: true){ (error) in
-        if let error = error {
-            print("error = \(error)")
-            
-        } else {
-            print("data uploaded successfully")
-            if showDetails {
-                print("dataUploaded = \(dataToUpdate)")
-            }
-            completion(true)
-        }
-    }
-}
+//func firestoreUpdate_data(docRef_string:String, dataToUpdate:[String:Any], completion: @escaping (Any) -> Void, showDetails: Bool = false){
+//
+//    let docRef = Firestore.firestore().document(docRef_string)
+//    print("updating data")
+//    docRef.setData(dataToUpdate, merge: true){ (error) in
+//        if let error = error {
+//            print("error = \(error)")
+//
+//        } else {
+//            print("data uploaded successfully")
+//            if showDetails {
+//                print("dataUploaded = \(dataToUpdate)")
+//            }
+//            completion(true)
+//        }
+//    }
+//}
+
+
+
+
+
+
 
 
 // uoload image to firebase

@@ -254,6 +254,8 @@ struct NewPostView: View {
                             // check for user
                             guard let currentUid = AuthViewModel.shared.userSession?.uid else { return }
                            
+                            let userRef = COLLECTION_USERS.document(currentUid)
+
                             if var user = AuthViewModel.shared.user {
                                 
                                 // data
@@ -272,6 +274,7 @@ struct NewPostView: View {
                                 // update thisRecipePost.id
                                 user.publishedRecipes.append(thisRecipePost.id.uuidString)
                                 
+                                
                                 // save thisRecipePost to ....
                                 firestoreSubmit_data(docRef_string: "recipe/\(thisRecipePost.id)", dataToSave: thisRecipePost.dictionary, completion: {_ in
                                     
@@ -280,15 +283,15 @@ struct NewPostView: View {
                                     
                                 })
                                 
-                                
-                                // update publishedRecipes
-                                firestoreUpdate_data(docRef_string: "users/\(currentUid)", dataToUpdate: ["publishedRecipes": user.publishedRecipes], completion: { _ in
-                                    
+                                // Atomically add a new recipe id to the "publushed recipes" array field.
+                                userRef.updateData([ "publishedRecipes": FieldValue.arrayUnion([ "recipe/\(thisRecipePost.id)"])]) { _ in
+                                   
                                     actionsCompleted += 1
                                     check_success()
-                                })
-                            
-                            
+                                }
+                                
+                                
+
                             // upload images
                             for i in 0...self.images.count-1 {
                                 let image = self.images[i].image
@@ -308,12 +311,6 @@ struct NewPostView: View {
                             //   alertView.duration = 3
                             alertView.present()
                             
-//
-//                            print("DEBUG2: publishedRecipes -- \(user.publishedRecipes)")
-//                            // Alert - Recipe Submitted
-//                            let alertView = SPAlertView(title: "Recipe Submitted", message: "Recipe Submitted successfully", preset: SPAlertIconPreset.done)
-//                            alertView.present()
-//
                         }
                     }) {
                         Text("SUBMIT RECIPE")
