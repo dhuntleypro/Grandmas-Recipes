@@ -26,6 +26,8 @@ struct RecipePost: Identifiable {
             "postingUser":postingUser,
             "description":description,
             "numberOfLikes": numberOfLikes
+        //    "image": image
+            
         ]
     }
 

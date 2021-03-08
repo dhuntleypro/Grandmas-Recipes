@@ -13,6 +13,8 @@ struct User: Identifiable {
     let profileImageURL: String
     let fullname: String
     let email: String
+    var publishedRecipes: [String] = []
+
     
     var isCurrentUser: Bool { return Auth.auth().currentUser?.uid == self.id }
     
@@ -22,5 +24,7 @@ struct User: Identifiable {
         self.profileImageURL = dictionary["profileImageURL"] as? String ?? ""
         self.fullname = dictionary["fullname"] as? String ?? ""
         self.email = dictionary["email"] as? String ?? ""
+        self.publishedRecipes = dictionary["publishedRecipes"] as? [String] ?? [""]
+
     }
 }

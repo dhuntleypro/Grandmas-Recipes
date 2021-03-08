@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 import Combine
+import FirebaseStorage
+import FirebaseFirestore
 import Firebase
 
 // USE ANYWHERE IN CODE
@@ -90,5 +92,42 @@ func firestoreSubmit_data(docRef_string:String, dataToSave:[String:Any], complet
     }
 }
 
+func firestoreUpdate_data(docRef_string:String, dataToUpdate:[String:Any], completion: @escaping (Any) -> Void, showDetails: Bool = false){
+    
+    let docRef = Firestore.firestore().document(docRef_string)
+    print("updating data")
+    docRef.setData(dataToUpdate, merge: true){ (error) in
+        if let error = error {
+            print("error = \(error)")
+            
+        } else {
+            print("data uploaded successfully")
+            if showDetails {
+                print("dataUploaded = \(dataToUpdate)")
+            }
+            completion(true)
+        }
+    }
+}
 
+
+// uoload image to firebase
+func uploadImage(_ referenceString:String, image:UIImage, completion: @escaping (Any) -> Void, showDetails: Bool = false){
+    if let imageData = image.jpegData(compressionQuality: 1){
+        let storage = Storage.storage()
+        storage.reference().child(referenceString).putData(imageData, metadata: nil){
+            (strgMtdta, err) in
+            
+            if let err = err {
+                print("an error has occurred - \(err.localizedDescription)")
+            } else {
+                print("image uploaded successfully")
+            }
+        }
+    } else {
+        print("couldn't unwrap image as data")
+    }
+    
+    
+}
 

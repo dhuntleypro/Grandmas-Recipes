@@ -100,6 +100,7 @@ class AuthViewModel: ObservableObject {
                                 "fullname" : fullname,
                                 "profileImageURL" : profileImageURL,
                                 "uid" : user.uid
+                                
                     ]
                     // FETCH THE USER
                     COLLECTION_USERS

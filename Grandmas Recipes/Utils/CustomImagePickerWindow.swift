@@ -9,26 +9,55 @@ import SwiftUI
 
 struct CustomImagePickerWindow: View {
     
-    @Binding var image : UIImage?
+    @Binding var images: [Identifiable_UIImage]
     @Binding var sourceType : UIImagePickerController.SourceType
-
+    @Binding var showImagePicker : Bool
+    
     var body: some View {
-        VStack {
-            ScrollView(.horizontal) {
-                HStack {
-                    ForEach(0..<8) { _ in
-                        Rectangle()
-                            .frame(width: 200, height: 200)
-                            .background(Color.red)
-                    }
+        VStack(spacing:0){
+            if images.count > 0 {
+                ScrollView(.horizontal){
+                    HStack{
+                        ForEach(self.images, id: \.id){i in
+                            Image(uiImage:i.image)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height:200)
+                                .shadow(radius:3)
+                        }
+                        
+                    }.padding()
                 }
-                .padding()
+                .frame(height:240)
+                .background(Color.white)
+            } else {
+                HStack{
+                    Spacer()
+                    Text("Please select an image from below")
+                    
+                    
+                    Spacer()
+                }
+                .frame(height:240)
+                .background(Color.white)
             }
-            .frame( height: 240)
-            .background(Color.blue)
-        
-           // Image Picker
-            MultipleImagePicker(image: $image , sourceType : sourceType)
+            HStack{
+                Button(action: {self.showImagePicker.toggle()}){
+                    Text("DONE")
+                        .padding()
+                        .font(.system(size:12, weight:.bold))
+                        .foregroundColor(.white)
+                        .frame(height:24)
+                        .background(Color.black)
+                        .cornerRadius(12)
+                    
+                    
+                }
+            }.frame(height:57).frame(maxWidth: .infinity).background(Color.white)
+            .zIndex(1)
+            // Image Picker
+            MultipleImagePicker(images: $images , sourceType : sourceType)
+                .offset(y: -57)
         }
     }
 }

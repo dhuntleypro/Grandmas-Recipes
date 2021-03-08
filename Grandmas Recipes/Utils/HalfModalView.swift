@@ -12,10 +12,10 @@ import SwiftUI
 struct HalfModalView<Content:View>: View {
     
     @GestureState private var dragState = DragState.inactive
-    @Binding var isShown:Bool
+    @Binding var isShown: Bool
     
     // account for tabview spacing
-    var isNear_TabView = false
+    var isNear_tabView = false
     
     private func onDragEnded(drag: DragGesture.Value) {
         let dragThreshold = modalHeight * (2/3)
@@ -23,6 +23,7 @@ struct HalfModalView<Content:View>: View {
             isShown = false
         }
     }
+    
     
     // defualt height value
     var modalHeight:CGFloat = 400
@@ -33,8 +34,8 @@ struct HalfModalView<Content:View>: View {
         let drag = DragGesture()
             .updating($dragState) { drag, state, transaction in
                 state = .dragging(translation: drag.translation)
-            }
-            .onEnded(onDragEnded)
+        }
+        .onEnded(onDragEnded)
         
         return Group {
             
@@ -48,13 +49,13 @@ struct HalfModalView<Content:View>: View {
                     .gesture(
                         TapGesture()
                             .onEnded { _ in
-                                UIApplication.shared.endEditing() // Hide keyboard
+                                UIApplication.shared.endEditing()
                                 self.isShown = false
-                            }
-                    )
+                        }
+                )
             }
             
-            // Foreground
+            //Foreground
             VStack{
                 Spacer()
                 ZStack{
@@ -62,28 +63,23 @@ struct HalfModalView<Content:View>: View {
                         .frame(width: UIScreen.main.bounds.size.width, height:modalHeight)
                         .cornerRadius(10)
                         .shadow(radius: 5)
-                    VStack {
+                    VStack{
                         self.content()
-                            .padding()
-                            .padding(.bottom, 65)
-                            .frame(width: UIScreen.main.bounds.size.width, height:modalHeight)
-                            .clipped()
-                        if isNear_TabView {
-                            Spacer().frame(height: 65) //(fix) -- hard coded need to fit all apps
-                            
+                        .padding()
+                        .padding(.bottom, 65)
+                        .frame(width: UIScreen.main.bounds.size.width, height:modalHeight)
+                        .clipped()
+                        if isNear_tabView {
+                            Spacer().frame(height:65) //(fix) -- hard coded need to fit all apps
                         }
                     }
-                    
-                    
-                    
                 }
                 .offset(y: isShown ? ((self.dragState.isDragging && dragState.translation.height >= 1) ? dragState.translation.height : 0) : modalHeight)
                 .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
                 .gesture(drag)
                 
                 
-            }
-            .KeyboardAwarePadding()
+            }.KeyboardAwarePadding()
         }.edgesIgnoringSafeArea(.all)
         
     }

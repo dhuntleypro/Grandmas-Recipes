@@ -7,47 +7,44 @@
 
 import SwiftUI
 
-struct MultipleImagePicker: UIViewControllerRepresentable {
-    @Binding var image: UIImage?
+
+struct MultipleImagePicker:UIViewControllerRepresentable {
+    @Binding var images: [Identifiable_UIImage]
     
     typealias UIViewControllerType = UIImagePickerController
     typealias Coordinator = imagePickerCoordinator
-
-    var sourceType: UIImagePickerController.SourceType = .camera
-
-    func makeUIViewController(context: UIViewControllerRepresentableContext <MultipleImagePicker>) -> UIImagePickerController {
-        
+    
+    var sourceType:UIImagePickerController.SourceType = .camera
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<MultipleImagePicker>) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.sourceType = sourceType
         picker.delegate = context.coordinator
         return picker
     }
     
-    
     func makeCoordinator() -> MultipleImagePicker.Coordinator {
-        return imagePickerCoordinator(image: $image)
+        return imagePickerCoordinator(images: $images)
     }
-
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<MultipleImagePicker>) {
-        
-    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<MultipleImagePicker>) {}
+    
 }
 
-//extension MultipleImagePicker {
-    class imagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        
-        @Binding var image: UIImage?
-        
-        init(image: Binding<UIImage?>) {
-            _image = image
-        }
-        
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            // allows for the changing of the image
-            if let uiimage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                image = uiimage
-            }
-            
+
+//------------------ COORDINATOR
+class imagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    @Binding var images: [Identifiable_UIImage]
+    init(images:Binding<[Identifiable_UIImage]>) {
+        _images = images
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let uiimage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            images.append(
+            Identifiable_UIImage(image: uiimage)
+            )
         }
     }
-//}
+}
