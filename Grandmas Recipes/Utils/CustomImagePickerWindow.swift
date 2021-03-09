@@ -43,13 +43,23 @@ struct CustomImagePickerWindow: View {
             }
             HStack{
                 Button(action: {self.showImagePicker.toggle()}){
-                    Text("DONE")
+                    if images.count == 1 {
+                        Text("DONE \(self.images.count) IMAGE")
+                            .padding()
+                            .font(.system(size:12, weight:.bold))
+                            .foregroundColor(.white)
+                            .frame(height:24)
+                            .background(Color.black)
+                            .cornerRadius(12)
+                    } else {
+                    Text("DONE \(self.images.count) IMAGES")
                         .padding()
                         .font(.system(size:12, weight:.bold))
                         .foregroundColor(.white)
                         .frame(height:24)
                         .background(Color.black)
                         .cornerRadius(12)
+                    }
                     
                     
                 }

@@ -12,7 +12,7 @@ struct Me_PostView: View {
     var body: some View {
         
             ZStack{
-                Image("fadeCarousel_1")
+                Image("defaultProfileImage")
                 .resizable()
                 .scaledToFill()
                     .frame(width: UIScreen.main.bounds.width, height: postHeight)

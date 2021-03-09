@@ -55,12 +55,14 @@ struct ProfileView: View {
                         .cornerRadius(5)
                     }
                     ScrollView{
+                        VStack(spacing: 0) {
                         ForEach(0..<self.auth.user!.publishedRecipes.count){ i in
                             
                             Me_PostView()
                         }
+                        }
                         
-                    }.background(Color.red)
+                    }.background(Color.white)
                     
                     
                     Button(action: {

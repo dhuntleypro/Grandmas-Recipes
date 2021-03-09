@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct RecipePost: Identifiable {
-   // var id: String
     var id = UUID()
+    var title: String
     var steps : [Step]
     var ingredients : [Ingredient]
     var postingUser: String
@@ -21,13 +21,12 @@ struct RecipePost: Identifiable {
     var dictionary: [String: Any] {
         return [
             "id": id.uuidString,
+            "title": title,
             "steps": steps.formatForFirebase(),
             "ingredients": ingredients.formatForFirebase(),
             "postingUser":postingUser,
             "description":description,
             "numberOfLikes": numberOfLikes
-        //    "image": image
-            
         ]
     }
 

@@ -12,6 +12,8 @@
 		868D19C525F50749001F2318 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D19C425F50749001F2318 /* RecipeViewModel.swift */; };
 		8693CD1E25F5AA9D00295678 /* Identifiable_UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8693CD1D25F5AA9D00295678 /* Identifiable_UIImage.swift */; };
 		8693CD2325F6468600295678 /* Me_PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8693CD2225F6468600295678 /* Me_PostView.swift */; };
+		8693CD2825F6F64000295678 /* trunc_RecipePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8693CD2725F6F64000295678 /* trunc_RecipePost.swift */; };
+		8693CD2B25F6FE1300295678 /* ModifyRecipePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8693CD2A25F6FE1300295678 /* ModifyRecipePost.swift */; };
 		86AF937625F359FC005862E3 /* RecipePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF937525F359FC005862E3 /* RecipePost.swift */; };
 		86AF937925F35B05005862E3 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF937825F35B05005862E3 /* PostView.swift */; };
 		86AF937E25F35E2B005862E3 /* StoryCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF937D25F35E2B005862E3 /* StoryCircleView.swift */; };
@@ -61,6 +63,8 @@
 		868D19C425F50749001F2318 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		8693CD1D25F5AA9D00295678 /* Identifiable_UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable_UIImage.swift; sourceTree = "<group>"; };
 		8693CD2225F6468600295678 /* Me_PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Me_PostView.swift; sourceTree = "<group>"; };
+		8693CD2725F6F64000295678 /* trunc_RecipePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trunc_RecipePost.swift; sourceTree = "<group>"; };
+		8693CD2A25F6FE1300295678 /* ModifyRecipePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyRecipePost.swift; sourceTree = "<group>"; };
 		86AF937525F359FC005862E3 /* RecipePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePost.swift; sourceTree = "<group>"; };
 		86AF937825F35B05005862E3 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		86AF937D25F35E2B005862E3 /* StoryCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCircleView.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 			children = (
 				86AF93A125F36F04005862E3 /* User.swift */,
 				86AF937525F359FC005862E3 /* RecipePost.swift */,
+				8693CD2725F6F64000295678 /* trunc_RecipePost.swift */,
 				86AF946125F446FC005862E3 /* Ingredient.swift */,
 				86AF946425F448FB005862E3 /* Step.swift */,
 				8693CD1D25F5AA9D00295678 /* Identifiable_UIImage.swift */,
@@ -172,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				86AF945D25F443A4005862E3 /* NewPostView.swift */,
+				8693CD2A25F6FE1300295678 /* ModifyRecipePost.swift */,
 				868D199F25F4EB8C001F2318 /* BottomModalView.swift */,
 			);
 			path = "New Post";
@@ -352,12 +358,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8693CD2825F6F64000295678 /* trunc_RecipePost.swift in Sources */,
 				86AF943E25F43DED005862E3 /* FBAuthError.swift in Sources */,
 				86BAEC7B25F4E3870002F1C0 /* HalfModalView.swift in Sources */,
 				8693CD1E25F5AA9D00295678 /* Identifiable_UIImage.swift in Sources */,
 				86AF944C25F43EC9005862E3 /* CustomSecureField.swift in Sources */,
 				86AF937925F35B05005862E3 /* PostView.swift in Sources */,
 				86AF945E25F443A4005862E3 /* NewPostView.swift in Sources */,
+				8693CD2B25F6FE1300295678 /* ModifyRecipePost.swift in Sources */,
 				86AF947025F44FC8005862E3 /* StepViewModel.swift in Sources */,
 				86EBD29A25F356F20074879C /* SearchView.swift in Sources */,
 				86EBD29625F356E60074879C /* HomeView.swift in Sources */,

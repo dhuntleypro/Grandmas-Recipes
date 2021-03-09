@@ -83,24 +83,24 @@ extension Double {
 // FIREBASE
 
 
-func initalizeListener_currentUser() {
-    guard let currentUid = AuthViewModel.shared.userSession?.uid else { return }
-    Firestore.firestore().document("users/\(currentUid)")
-        .addSnapshotListener { querySnapshot, error in
-            guard let document = querySnapshot else {
-                print("Error fetching docuemtns: \(error!)")
-                return
-            }
-            
-            print("new information found with listener")
-            print("\(document.documentID) => \(document.data())")
-            
-            if let thisData = document.data() {
-                
-            }
-            
-        }
-}
+//func initalizeListener_currentUser() {
+//    guard let currentUid = AuthViewModel.shared.userSession?.uid else { return }
+//    Firestore.firestore().document("users/\(currentUid)")
+//        .addSnapshotListener { querySnapshot, error in
+//            guard let document = querySnapshot else {
+//                print("Error fetching docuemtns: \(error!)")
+//                return
+//            }
+//
+//            print("new information found with listener")
+//            print("\(document.documentID) => \(document.data())")
+//
+//            if let thisData = document.data() {
+//
+//            }
+//
+//        }
+//}
 
 func firestoreSubmit_data(docRef_string:String, dataToSave:[String:Any], completion: @escaping (Any) -> Void, showDetails: Bool = false){
     
